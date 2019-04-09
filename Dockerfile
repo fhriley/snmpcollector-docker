@@ -26,12 +26,8 @@ RUN  cp /opt/snmpcollector/conf/sample.config.toml /opt/snmpcollector/conf/confi
 
 WORKDIR /opt/snmpcollector
 
-RUN  echo "#!/bin/sh" > /start.sh
-RUN  echo "./bin/snmpcollector  > ./log/stdout.log 2> ./log/stderr.log" >> /start.sh
-RUN  chmod +x /start.sh
-
 VOLUME ["/opt/snmpcollector/conf", "/opt/snmpcollector/log"]
 
 EXPOSE 8090
 
-ENTRYPOINT ["/start.sh"]
+CMD ["/opt/snmpcollector/bin/snmpcollector"]
